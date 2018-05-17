@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的列表渲染</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <!-- Vue中改变数组, 希望页面跟着变有三种方式
+         1.改变数组的引用
+         2.调用数组的遍历方法 pop等
+         3.使用set方法 
+           例如 Vue.set(vm.userInfo, 1, 5)
+           或者vm.$set(vm.userInfo, 2, 10)
+
+           直接改变通过索引改变 页面不会跟着变化 
+           例如vm.userInfo[1] = 5
+    -->
+
+    <!-- Vue中改变对象中的数据, 希望页面跟着变有两种种方式
+         1.改变对象的引用
+         2.使用set方法
+    -->    
+    <div id="app">
+       <div v-for="(item, index) of userInfo">
+           {{item}}
+       </div>
+    </div>
+
+    <script>
+       var vm = new Vue({
+           el: "#app",
+           data: {
+               userInfo: [1, 2, 3, 4]
+           }
+       })
+    </script>
+</body>
+</html>

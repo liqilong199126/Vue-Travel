@@ -7,10 +7,12 @@
     <title>Vue中的CSS动画原理</title>
     <script src="./vue.js"></script>
     <style>
-      .v-enter {
+      .v-enter, 
+      .v-leave-to{
           opacity: 0;
       }
-      .v-enter-active {
+      .v-enter-active,
+      .v-leave-active{
           transition: opacity 3s;
       }
     </style>
@@ -18,7 +20,9 @@
 <body>
     <div id="app">
         <transition>
-            <div v-if="show">Hello World</div>
+            <!-- 使用v-if v-show 和动态组件均可实现过渡效果 -->
+            <div v-show="show">Hello World</div>
+            <!-- <div v-if="show">Hello World</div> -->
         </transition>
         <button @click="handleBtnClick">切换</button>
     </div>

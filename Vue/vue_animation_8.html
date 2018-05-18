@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的列表过渡</title>
+    <script src="./vue.js"></script>
+    <style>
+        .v-enter, .v-leave-to {
+            opacity: 0;
+        }
+        .v-enter-active, .v-leave-active {
+            transition: opacity 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <transition-group>
+            <!--index做key值有可能导致性能下降和功能上的一些影响,
+                能不用index作为key值就尽量不要用index做key值,
+                在该场景下每一个id就是一个独立的编号, 可以使用id作为key值
+            -->
+            <div v-for="item of list" :key="item.id">
+                {{item.title}}
+            </div>
+        </transition-group> 
+        
+        <!--上面代码相当于
+        <transition-group>
+            <div>Hello World</div>
+        </transition-group>
+
+        <transition-group>
+            <div>Hello World</div>
+        </transition-group>
+
+        <transition-group>
+            <div>Hello World</div>
+        </transition-group>
+
+        列表元素过渡相当于单个元素的过渡
+        -->
+        <button @click="handleBtnClick">Add</button>
+    </div>
+
+    <script>
+        var count = 0;
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: []
+            },
+            methods: {
+                handleBtnClick: function () {
+                    this.list.push({
+                        id: count++,
+                        title: 'hello world'
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

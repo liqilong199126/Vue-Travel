@@ -45,6 +45,7 @@ export default {
     }
   },
   mounted () {
+    // 对全局事件的解绑
     window.addEventListener('scroll', this.handleScroll)
   },
   unmounted () {
